@@ -1,9 +1,8 @@
-# 家人们！5分钟零成本搭自己的GitHub/Docker加速站，再也不用忍受几KB/s的龟速了！
+# 家人们！5分钟零成本搭自己的GitHub加速站，再也不用忍受几KB/s的龟速了！
 
 ## 😭 我是真的被折磨够了
 谁懂啊家人们！作为一个国内开发，每天都要被这些破事搞崩溃：
 - 一大早赶需求要clone个GitHub项目，进度条直接卡0%卡10分钟，动不动就timeout，直接给我整迟到
-- 线上出问题要pull个Docker镜像排查，拉到一半给我断了，重拉三次才成功，老板都在群里催疯了
 - 想下个GitHub Release的安装包，100M的东西要下半小时，比我家十年前的网还慢
 - 网上搜的那些公开加速站，要么限速到1M/s，要么用着用着突然就凉了，找都找不到地方说理
 
@@ -14,18 +13,12 @@
 | 功能 | 我这个方案 | 外面的公开加速站 |
 |------|------------|------------------|
 | GitHub各种加速（Clone/Release/Raw） | ✅ 全支持 | ✅ 大部分支持 |
-| Docker镜像加速 | ✅ 原生支持，自动鉴权 | ❌ 很多不支持，或者经常炸 |
-| GHCR/Quay/GCR这些小众容器仓库 | ✅ 全兼容 | ❌ 基本都不支持 |
 | 速度 | ✅ 不限速，跑满你家带宽 | ❌ 普遍限速1-2M/s，慢到死 |
 | 稳定性 | ✅ 自己的Cloudflare账户，想用到什么时候用到什么时候 | ❌ 说挂就挂，说限速就限速，你连找谁都不知道 |
 | 成本 | ✅ 完全免费，一分钱不用花 | ❌ 好用的基本都要收费 |
 | 部署难度 | ✅ 有手就行，5分钟搞定 | ❌ 你不用管，但是哪天没了也不知道 |
 
-**最牛逼的是我加了别人没有的功能：**
-Docker镜像拉取的时候会自动反代S3的重定向链接，不用你客户端跳转到S3，直接从Cloudflare节点给你吐数据，这个功能对国内用户提升速度特别明显，我自己用下来拉Docker镜像速度从原来的几KB/s直接干到几十MB/s，爽到飞起。
-
 ## 🚀 直接使用（不想自己搭的直接用）
-### GitHub 加速
 把GitHub地址直接拼在你的加速域名后面就行：
 ```bash
 # 原地址
@@ -35,24 +28,6 @@ git clone https://cloudflare-proxy-6rw.pages.dev/https://github.com/maoshengyzx/
 
 # 下载Release包
 wget https://cloudflare-proxy-6rw.pages.dev/https://github.com/maoshengyzx/cloudflare-proxy/releases/download/v1.0.0/release.zip
-```
-
-### Docker 加速
-Linux 系统配置：
-```bash
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://cloudflare-proxy-6rw.pages.dev"]
-}
-EOF
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-```
-
-配置完成后直接正常pull就行：
-```bash
-docker pull nginx:alpine
-docker pull ghcr.io/immich-app/immich-server:release
 ```
 
 ## 🛠️ 真·5分钟搞定部署，有手就行
@@ -83,16 +58,16 @@ window.CF_PROXY = {
 提交修改，Cloudflare会自动重新部署，1分钟后就能用了。
 
 #### 第四步：爽起来
-打开你的域名，就能看到一个干干净净的加速站页面，里面有现成的URL生成器，直接把你要下的GitHub地址或者Docker镜像名粘进去，自动给你生成加速链接，复制就能用，傻瓜式操作。
+打开你的域名，就能看到一个干干净净的加速站页面，里面有现成的URL生成器，直接把你要下的GitHub地址粘进去，自动给你生成加速链接，复制就能用，傻瓜式操作。
 
 ## ⚙️ 好奇原理的可以看看，不想看的直接跳过就行
 说人话就是：
 代码核心就是根目录的`_worker.js`，Cloudflare会自动把它跑在全球的边缘节点上，你所有的请求都先到Cloudflare节点，然后它去国外帮你把资源拉回来，再给你，相当于找了个全球最快的跑腿帮你取东西，你不用自己慢慢连国外的慢网。
 
 我做了几个核心优化：
-1. Docker拉镜像的时候如果遇到要登录的401错误，自动帮你去拿Token，你啥都不用管，直接pull就行
-2. Docker镜像的文件都是存在S3上的，国内直接访问S3巨慢，我做了个自动反代，所有S3的资源都从Cloudflare节点给你吐，速度直接翻几十倍
-3. 自动识别GHCR、Quay这些小众容器仓库，不用你单独配置，直接就能用
+1. 自动识别GitHub的CDN/S3重定向，所有资源都从Cloudflare节点给你吐，速度直接翻几十倍
+2. S3/对象存储请求自动补齐签名头，不用客户端跳转到慢速CDN
+3. 白名单机制控制可代理的上游域名，安全可控
 
 ## 📦 源码地址
 全部代码都开源在这里：[https://github.com/maoshengyzx/cloudflare-proxy](https://github.com/maoshengyzx/cloudflare-proxy)

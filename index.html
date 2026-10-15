@@ -7,22 +7,22 @@
 <link rel="canonical" href="https://cloudflare-proxy-6rw.pages.dev/">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <title>Cloudflare Proxy — 全球加速 · 一键部署</title>
-<meta name="description" content="基于 Cloudflare Pages 的 GitHub Release、Docker Hub 镜像加速代理服务。免费、高速、无需注册，支持 Docker Registry 镜像、Git Clone、Raw 文件下载加速，支持 GHCR、Quay、GCR 等第三方容器仓库。">
-<meta name="keywords" content="Cloudflare 加速, GitHub 加速, Docker 加速, Docker 镜像代理, Cloudflare Pages, 免费加速, git clone 加速, GitHub Release 加速, 大陆 GitHub 访问, 加速站源码">
+<meta name="description" content="基于 Cloudflare Pages 的 GitHub Release、Git Clone、Raw 文件、Archive 归档加速代理服务。免费、高速、无需注册，直连 GitHub 源站，大陆访问加速。">
+<meta name="keywords" content="Cloudflare 加速, GitHub 加速, Cloudflare Pages, 免费加速, git clone 加速, GitHub Release 加速, 大陆 GitHub 访问, 加速站源码">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cloudflare Proxy — 全球加速 · 一键部署">
-<meta property="og:description" content="基于 Cloudflare Pages 的 GitHub Release、Docker Hub 镜像加速代理服务。免费、高速、无需注册。">
+<meta property="og:description" content="基于 Cloudflare Pages 的 GitHub Release、Git Clone、Raw 文件下载加速代理服务。免费、高速、无需注册。">
 <meta property="og:url" content="https://cloudflare-proxy-6rw.pages.dev/">
 <meta property="og:image" content="https://cloudflare-proxy-6rw.pages.dev/assets/icons/og-preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cloudflare Proxy — 全球加速 · 一键部署">
-<meta name="twitter:description" content="基于 Cloudflare Pages 的 GitHub Release、Docker Hub 镜像加速代理服务。免费、高速、无需注册。">
+<meta name="twitter:description" content="基于 Cloudflare Pages 的 GitHub Release、Git Clone、Raw 文件下载加速代理服务。免费、高速、无需注册。">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Cloudflare Proxy",
-  "description": "基于 Cloudflare Pages 的 GitHub Release、Docker Hub 镜像加速代理服务",
+  "description": "基于 Cloudflare Pages 的 GitHub Release、Git Clone、Raw 文件下载加速代理服务",
   "url": "https://cloudflare-proxy-6rw.pages.dev/",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "All",
@@ -77,7 +77,6 @@
   <div class="flex items-center gap-1 text-sm font-medium">
     <a href="/" class="px-3.5 py-2 rounded-lg bg-brand-accent/15 text-brand-accent transition-colors duration-200">首页</a>
     <a href="/gh.html" class="px-3.5 py-2 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-hover/50 transition-colors duration-200">GitHub 加速</a>
-    <a href="/docker.html" class="px-3.5 py-2 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-hover/50 transition-colors duration-200">Docker 加速</a>
     <a href="/docs.html" class="px-3.5 py-2 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-hover/50 transition-colors duration-200">文档</a>
     <a href="https://github.com/maoshengyzx/cloudflare-proxy" target="_blank" rel="noopener" class="ml-2 p-2 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-hover/50 transition-colors duration-200 cursor-pointer" aria-label="GitHub">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
@@ -103,12 +102,12 @@
     </h1>
 
     <p class="mt-6 text-lg md:text-xl text-brand-muted max-w-2xl mx-auto animate-fade-in delay-200">
-      GitHub Release 下载加速、Docker Hub 镜像代理 —— 基于 Cloudflare Pages，免费、高速、零门槛。
+      GitHub Release 下载加速、Git Clone 代理、Raw 文件直连 —— 基于 Cloudflare Pages，免费、高速、零门槛。
     </p>
 
     <div class="mt-10 flex flex-col items-center gap-4 animate-fade-in delay-300">
       <div class="flex items-center w-full max-w-md bg-brand-card border border-brand-border rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-brand-accent/50 transition-shadow duration-200">
-        <input type="text" id="hero-input" placeholder="粘贴 GitHub 仓库地址或 Docker 镜像名..." class="flex-1 bg-transparent px-4 py-3.5 text-sm font-mono text-brand-text placeholder:text-brand-muted/60 outline-none">
+        <input type="text" id="hero-input" placeholder="粘贴 GitHub 仓库地址或 Release 下载链接..." class="flex-1 bg-transparent px-4 py-3.5 text-sm font-mono text-brand-text placeholder:text-brand-muted/60 outline-none">
         <button id="hero-btn" class="px-5 py-3.5 bg-brand-accent hover:bg-brand-accent-hover text-slate-900 font-semibold text-sm transition-colors duration-200 cursor-pointer whitespace-nowrap">
           开始加速
         </button>
@@ -145,11 +144,11 @@
 <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">三大核心加速</h2>
-      <p class="mt-4 text-brand-muted text-lg max-w-xl mx-auto">覆盖开发者最常用的三个平台，一个 Worker 全部搞定。</p>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">两大核心加速</h2>
+      <p class="mt-4 text-brand-muted text-lg max-w-xl mx-auto">GitHub 全场景加速，一个 Worker 全部搞定。</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 gap-6">
       <!-- Feature 1: GitHub -->
       <div class="group bg-brand-card border border-brand-border rounded-2xl p-8 hover:border-brand-accent/40 hover:bg-brand-hover/50 transition-all duration-300 cursor-pointer">
         <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5 group-hover:bg-brand-accent/20 transition-colors duration-300">
@@ -164,31 +163,17 @@
         </ul>
       </div>
 
-      <!-- Feature 2: Docker -->
-      <div class="group bg-brand-card border border-brand-border rounded-2xl p-8 hover:border-brand-accent/40 hover:bg-brand-hover/50 transition-all duration-300 cursor-pointer">
-        <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5 group-hover:bg-brand-accent/20 transition-colors duration-300">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Docker 镜像加速</h3>
-        <p class="text-brand-muted leading-relaxed mb-4">代理 Docker Hub 镜像拉取。支持 <code class="px-1.5 py-0.5 bg-brand-hover rounded text-sm font-mono text-brand-accent">docker pull</code> 一键配置。</p>
-        <ul class="space-y-2 text-sm text-brand-muted">
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Docker Hub 全量代理</li>
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>一键配置 daemon.json</li>
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>支持 GHCR / Quay.io</li>
-        </ul>
-      </div>
-
-      <!-- Feature 3: Registries -->
+      <!-- Feature 2: 通用 URL 代理 -->
       <div class="group bg-brand-card border border-brand-border rounded-2xl p-8 hover:border-brand-accent/40 hover:bg-brand-hover/50 transition-all duration-300 cursor-pointer">
         <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5 group-hover:bg-brand-accent/20 transition-colors duration-300">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
         </div>
-        <h3 class="text-xl font-semibold mb-3">多 Registry 支持</h3>
-        <p class="text-brand-muted leading-relaxed mb-4">除 Docker Hub 外，还支持 GHCR、Quay.io、GCR 等主流容器镜像仓库，一个代理全搞定。</p>
+        <h3 class="text-xl font-semibold mb-3">通用 URL 代理</h3>
+        <p class="text-brand-muted leading-relaxed mb-4">任意 GitHub 地址拼在代理域名后即可，Release、Raw、Archive、gist 全部直连。</p>
         <ul class="space-y-2 text-sm text-brand-muted">
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>GitHub Container Registry</li>
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Red Hat Quay</li>
-          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Container Registry</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Release 二进制下载</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Raw 文件 / gist 直连</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Archive 源码压缩包</li>
         </ul>
       </div>
     </div>
@@ -200,19 +185,11 @@
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-14">
       <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">快速上手</h2>
-      <p class="mt-4 text-brand-muted text-lg">两种使用方式，选择最适合你的</p>
+      <p class="mt-4 text-brand-muted text-lg">一个代理域名，替换原地址前缀即可</p>
     </div>
 
-    <!-- Tabs -->
-    <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden tab-group">
-      <div class="flex border-b border-brand-border overflow-x-auto" role="tablist">
-        <button class="px-6 py-3.5 text-sm font-medium border-b-2 border-brand-accent text-brand-accent whitespace-nowrap transition-colors duration-200 cursor-pointer" data-tab="tab-github" role="tab" aria-selected="true">GitHub 加速</button>
-        <button class="px-6 py-3.5 text-sm font-medium border-b-2 border-transparent text-brand-muted hover:text-brand-text whitespace-nowrap transition-colors duration-200 cursor-pointer" data-tab="tab-docker" role="tab" aria-selected="false">Docker 加速</button>
-
-      </div>
-
-      <!-- Tab: GitHub -->
-      <div class="tab-panel p-6 sm:p-8" id="tab-github" role="tabpanel">
+    <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden">
+      <div class="p-6 sm:p-8">
         <p class="text-brand-muted mb-5 text-sm">将 <code class="px-1.5 py-0.5 bg-brand-hover rounded text-xs font-mono text-brand-accent">github.com</code> 替换为你的代理域名即可：</p>
         <div class="bg-[#0B1120] rounded-xl p-5 font-mono text-sm overflow-x-auto code-block relative group">
           <button class="absolute top-3 right-3 p-1.5 rounded-lg bg-brand-hover/80 hover:bg-brand-hover text-brand-muted hover:text-brand-text transition-colors duration-200 cursor-pointer opacity-0 group-hover:opacity-100 copy-btn" title="复制">
@@ -225,24 +202,6 @@ git clone <span class="text-sky-400">https://cloudflare-proxy-6rw.pages.dev</spa
 wget <span class="text-sky-400">https://cloudflare-proxy-6rw.pages.dev</span>/<span class="text-yellow-400">https://github.com/user/repo/releases/download/v1.0/file.tar.gz</span></code>
         </div>
       </div>
-
-      <!-- Tab: Docker -->
-      <div class="tab-panel p-6 sm:p-8 hidden" id="tab-docker" role="tabpanel">
-        <p class="text-brand-muted mb-5 text-sm">修改 Docker daemon 配置，添加 registry mirror：</p>
-        <div class="bg-[#0B1120] rounded-xl p-5 font-mono text-sm overflow-x-auto code-block relative group">
-          <button class="absolute top-3 right-3 p-1.5 rounded-lg bg-brand-hover/80 hover:bg-brand-hover text-brand-muted hover:text-brand-text transition-colors duration-200 cursor-pointer opacity-0 group-hover:opacity-100 copy-btn" title="复制">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-          <code><span class="text-brand-muted">// /etc/docker/daemon.json</span>
-{
-  <span class="text-brand-accent">"registry-mirrors"</span>: [
-    <span class="text-yellow-400">"https://cloudflare-proxy-6rw.pages.dev"</span>
-  ]
-}</code>
-        </div>
-        <p class="text-brand-muted mt-4 text-sm">然后执行 <code class="px-1.5 py-0.5 bg-brand-hover rounded text-xs font-mono text-brand-accent">systemctl restart docker</code> 生效。</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -292,7 +251,7 @@ wget <span class="text-sky-400">https://cloudflare-proxy-6rw.pages.dev</span>/<s
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-open:rotate-180 transition-transform duration-200"><polyline points="6 9 12 15 18 9"/></svg>
         </summary>
         <div class="px-6 pb-4 text-brand-muted text-sm leading-relaxed border-t border-brand-border pt-4">
-          GitHub (Release, Clone, Raw, Archive)、Docker Hub、GHCR、Quay.io、NPM Registry、PyPI、Crates.io。通过 Worker 配置可扩展支持更多上游。
+          GitHub (Release、Clone、Raw、Archive、gist)。通过修改 Worker 的 ALLOWED_HOSTS 可扩展支持更多上游。
         </div>
       </details>
     </div>
@@ -330,7 +289,6 @@ wget <span class="text-sky-400">https://cloudflare-proxy-6rw.pages.dev</span>/<s
     </div>
     <div class="flex items-center gap-6">
       <a href="/gh.html" class="hover:text-brand-text transition-colors duration-200">GitHub 加速</a>
-      <a href="/docker.html" class="hover:text-brand-text transition-colors duration-200">Docker 加速</a>
       <a href="/docs.html" class="hover:text-brand-text transition-colors duration-200">文档</a>
     </div>
     <span>Powered by Cloudflare Pages</span>
